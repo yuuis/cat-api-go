@@ -1,5 +1,4 @@
-package domain
+package entity
 
 type Id interface {
-	
 }
