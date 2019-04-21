@@ -16,7 +16,7 @@ func main() {
 	dbName := os.Getenv("MYSQL_DATABASE")
 	dbHost := os.Getenv("MYSQL_HOST")
 
-	db, err := gorm.Open("mysql", "root:" + rootPassword + "@tcp("+dbHost+":3306)/" + dbName + "?charset=utf8mb4&parseTime=true")
+	db, err := gorm.Open("mysql", "root:"+rootPassword+"@tcp("+dbHost+":3306)/"+dbName+"?charset=utf8mb4&parseTime=true")
 
 	if err != nil {
 		log.Fatal(err)
