@@ -1,8 +1,8 @@
-package cat_api_go
+package main
 
 import (
 	"github.com/yuuis/cat-api-go/external/api"
-	infrastructure "github.com/yuuis/cat-api-go/inflastructure"
+	"github.com/yuuis/cat-api-go/inflastructure"
 	"github.com/yuuis/cat-api-go/registry"
 	"log"
 	"os"
