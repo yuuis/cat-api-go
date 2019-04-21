@@ -28,7 +28,7 @@ func (ctr *controller) GetCat(c *gin.Context) {
 	ctx := c.Request.Context()
 	ctx = addGinContext(ctx, c)
 
-	ctr.it.PostCat(ctx, &ipt)
+	ctr.it.GetCat(ctx, &ipt)
 }
 
 func (ctr *controller) PostCat(c *gin.Context) {

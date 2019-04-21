@@ -32,7 +32,7 @@ func (c *cat) All() ([]*entity.Cat, error) {
 	return eCats, nil
 }
 
-func (c *cat) Find(id int64) (*entity.Cat, error) {
+func (c *cat) Find(id string) (*entity.Cat, error) {
 	var mCat mysql.Cat
 
 	if err := c.db.First(&mCat, id).Error; err != nil {

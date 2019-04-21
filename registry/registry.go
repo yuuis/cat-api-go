@@ -13,14 +13,12 @@ type Registry interface {
 
 type registry struct {
 	db     *gorm.DB
-	hash   *hashids.HashID
 	logger *log.Logger
 }
 
-func NewRegistry(db *gorm.DB, hash *hashids.HashID, logger *log.Logger) Registry {
+func NewRegistry(db *gorm.DB, logger *log.Logger) Registry {
 	return &registry{
 		db:     db,
-		hash:   hash,
 		logger: logger,
 	}
 }

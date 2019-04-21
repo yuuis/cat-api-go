@@ -2,11 +2,10 @@ package mysql
 
 import (
 	"github.com/yuuis/cat-api-go/domain/entity"
-	"time"
 )
 
 type Cat struct {
-	ID   int64
+	ID   string
 	Name string
 }
 
