@@ -1,4 +1,4 @@
-package registory
+package registry
 
 import (
 	"github.com/yuuis/cat-api-go/adapter/hashid"

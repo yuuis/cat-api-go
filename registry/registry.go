@@ -1,4 +1,4 @@
-package registory
+package registry
 
 import (
 	"github.com/jinzhu/gorm"
@@ -17,7 +17,7 @@ type registry struct {
 	logger *log.Logger
 }
 
-func NewRegistory(db *gorm.DB, hash *hashids.HashID, logger *log.Logger) Registry {
+func NewRegistry(db *gorm.DB, hash *hashids.HashID, logger *log.Logger) Registry {
 	return &registry{
 		db: db,
 		hash: hash,
