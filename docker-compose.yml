@@ -3,12 +3,14 @@ services:
   cat:
     build: .
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
       MYSQL_DATABASE: cat
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_HOST: db
     ports:
       - "8080:8080"
+    volumes:
+      - ".:/go/src/cat"
+    command: go run db/migrate.go
     depends_on:
       - db
     links:

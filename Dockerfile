@@ -1,6 +1,8 @@
-FROM golang:latest
+FROM golang:1.12
 
-WORKDIR /go
-ADD . /go
+WORKDIR /go/src/cat
+COPY . .
+ENV GO111MODULE=on
 
-CMD ["go", "run", "main.go"]
+RUN go get github.com/pilu/fresh
+CMD ["fresh"]
