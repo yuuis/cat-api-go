@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
 
@@ -11,7 +12,11 @@ import (
 )
 
 func main() {
-	db, err := gorm.Open("mysql", "root:password@/diffmvca?charset=utf8mb4&parseTime=true")
+	rootPassword := os.Getenv("MYSQL_ROOT_PASSWORD")
+	dbName := os.Getenv("MYSQL_DATABASE")
+	dbHost := os.Getenv("MYSQL_HOST")
+
+	db, err := gorm.Open("mysql", "root:" + rootPassword + "@tcp("+dbHost+":3306)/" + dbName + "?charset=utf8mb4&parseTime=true")
 
 	if err != nil {
 		log.Fatal(err)
