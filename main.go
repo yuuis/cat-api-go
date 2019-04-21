@@ -9,11 +9,6 @@ import (
 )
 
 func main() {
-	hash, err := infrastructure.NewHash()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	db, err := infrastructure.OpenDB()
 	if err != nil {
 		log.Fatal(err)
@@ -21,7 +16,7 @@ func main() {
 
 	logger := log.New(os.Stdout, "cat-api-go", log.Ltime)
 
-	r := registry.NewRegistry(db, hash, logger)
+	r := registry.NewRegistry(db, logger)
 	controller := r.NewController()
 	server := infrastructure.NewServer()
 	api.NewRouter(server, controller)
