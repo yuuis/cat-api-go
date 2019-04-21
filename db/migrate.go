@@ -1,4 +1,4 @@
-package db
+package main
 
 import (
 	"log"
@@ -17,5 +17,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	db.CreateTable(&mysql.Item{})
+	db.CreateTable(&mysql.Cat{})
 }
