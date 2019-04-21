@@ -1,13 +1,13 @@
 package db
 
 import (
-"log"
+	"log"
 
-"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
+	"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
 
-_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 
-"github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm"
 )
 
 func main() {

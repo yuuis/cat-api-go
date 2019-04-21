@@ -13,13 +13,13 @@ type Cat interface {
 }
 
 type cat struct {
-	catRepository repository.Cat
+	catRepository  repository.Cat
 	hashRepository repository.Hash
 }
 
 func NewCat(catRepository repository.Cat, hashRepository repository.Hash) Cat {
-	return &cat {
-		catRepository: catRepository,
+	return &cat{
+		catRepository:  catRepository,
 		hashRepository: hashRepository,
 	}
 }
@@ -38,7 +38,7 @@ func (c *cat) Get(ipt *input.GetCat) (*output.Cat, error) {
 	}
 
 	oCat := &output.Cat{
-		ID: cat.ID,
+		ID:   cat.ID,
 		Name: cat.Name,
 	}
 
@@ -53,7 +53,7 @@ func (c *cat) Post(ipt *input.PostCat) (*output.Cat, error) {
 	}
 
 	cat, err := c.catRepository.Store(&entity.Cat{
-		ID: c.hashRepository.Generate(),
+		ID:   c.hashRepository.Generate(),
 		Name: ipt.Name,
 	})
 
@@ -62,7 +62,7 @@ func (c *cat) Post(ipt *input.PostCat) (*output.Cat, error) {
 	}
 
 	oCat := &output.Cat{
-		ID: cat.ID,
+		ID:   cat.ID,
 		Name: cat.Name,
 	}
 

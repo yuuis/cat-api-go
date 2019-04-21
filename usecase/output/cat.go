@@ -1,6 +1,6 @@
 package output
 
 type Cat struct {
-	ID int64 `json:"id"`
+	ID   int64  `json:"id"`
 	Name string `json:"name"`
 }

@@ -7,13 +7,13 @@ import (
 
 type Interactor struct {
 	presenter Presenter
-	cat Cat
+	cat       Cat
 }
 
 func NewInteractor(pre Presenter, cat Cat) Interactor {
 	return Interactor{
 		presenter: pre,
-		cat:      cat,
+		cat:       cat,
 	}
 }
 

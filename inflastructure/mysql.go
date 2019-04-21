@@ -8,4 +8,3 @@ import (
 func OpenDB() (*gorm.DB, error) {
 	return gorm.Open("mysql", "root:password@/cat?charset=utf8mb4&parseTime=true")
 }
-

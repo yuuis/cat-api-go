@@ -1,14 +1,14 @@
 package cat_api_go
 
 import (
-	"github.com/yuuis/cat-api-go/registry"
 	"github.com/yuuis/cat-api-go/external/api"
 	infrastructure "github.com/yuuis/cat-api-go/inflastructure"
+	"github.com/yuuis/cat-api-go/registry"
 	"log"
 	"os"
 )
 
-func main()  {
+func main() {
 	hash, err := infrastructure.NewHash()
 	if err != nil {
 		log.Fatal(err)

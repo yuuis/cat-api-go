@@ -44,7 +44,7 @@ func (c *cat) Find(id int64) (*entity.Cat, error) {
 
 func (c *cat) Store(cat *entity.Cat) (*entity.Cat, error) {
 	mCat := mysql.Cat{
-		ID: cat.ID,
+		ID:   cat.ID,
 		Name: cat.Name,
 	}
 

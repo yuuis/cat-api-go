@@ -2,9 +2,8 @@ package hashid
 
 import (
 	"errors"
-	"github.com/yuuis/cat-api-go/domain/repository"
 	"github.com/speps/go-hashids"
-
+	"github.com/yuuis/cat-api-go/domain/repository"
 )
 
 type hash struct {
