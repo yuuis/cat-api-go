@@ -13,10 +13,8 @@ services:
     links:
       - db
     tty: true
-
   db:
     image: mysql:8.0
-    restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: cat
