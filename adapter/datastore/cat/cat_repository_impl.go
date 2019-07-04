@@ -68,3 +68,11 @@ func (d *datastore) Update(cat *domainCat.Cat) (*domainCat.Cat, error) {
 
 	return mCat.ToEntity(), nil
 }
+
+func (d *datastore) Delete(id string) error {
+	if err := d.db.Where("id = ?", id).Delete(Cat{}).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

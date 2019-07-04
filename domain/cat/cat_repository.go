@@ -5,4 +5,5 @@ type CatRepository interface {
 	Find(id string) (*Cat, error)
 	Store(*Cat) (*Cat, error)
 	Update(*Cat) (*Cat, error)
+	Delete(id string) error
 }
