@@ -1,6 +1,7 @@
 package datastoreCat
 
 import (
+	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/yuuis/cat-api-go/domain/cat"
 )
@@ -10,7 +11,7 @@ type datastore struct {
 }
 
 func NewCatRepository(db *gorm.DB) domainCat.CatRepository {
-	return &datastore {
+	return &datastore{
 		db: db,
 	}
 }
@@ -50,5 +51,20 @@ func (d *datastore) Store(cat *domainCat.Cat) (*domainCat.Cat, error) {
 		return nil, err
 	}
 
-	return cat, nil
+	return mCat.ToEntity(), nil
+}
+
+func (d *datastore) Update(cat *domainCat.Cat) (*domainCat.Cat, error) {
+	fmt.Println("update")
+	var mCat Cat
+
+	if err := d.db.Where("id = ?", cat.ID).Find(&mCat).Error; err != nil {
+		return nil, err
+	}
+
+	if err := d.db.Model(&mCat).Where("id = ?", cat.ID).Update("name", cat.Name).Error; err != nil {
+		return nil, err
+	}
+
+	return mCat.ToEntity(), nil
 }
