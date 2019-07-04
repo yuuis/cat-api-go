@@ -1,8 +1,11 @@
 package api
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/yuuis/cat-api-go/external/api/controllers"
+)
 
-func NewRouter(r *gin.Engine, c Controller) {
+func Router(r *gin.Engine, c controllers.Controller) {
 	r.GET("/cats", c.GetAllCats)
 	r.GET("/cats/:catID", c.GetCat)
 	r.POST("/cats", c.CreateCat)

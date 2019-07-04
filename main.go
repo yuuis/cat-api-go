@@ -19,7 +19,7 @@ func main() {
 	r := registry.NewRegistry(db, logger)
 	c := r.NewController()
 	s := infrastructure.NewServer()
-	api.NewRouter(s, c)
+	api.Router(s, c)
 
 	if err := s.Run(); err != nil {
 		log.Fatal(err)

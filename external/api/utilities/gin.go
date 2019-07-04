@@ -1,4 +1,4 @@
-package api
+package utilities
 
 import (
 	"context"
@@ -20,7 +20,7 @@ func init() {
 	ginContextMap = map[string]*gin.Context{}
 }
 
-func addGinContext(ctx context.Context, c *gin.Context) context.Context {
+func AddGinContext(ctx context.Context, c *gin.Context) context.Context {
 	key := generateNewKey()
 
 	ctx = setResKey(ctx, key)
@@ -30,7 +30,7 @@ func addGinContext(ctx context.Context, c *gin.Context) context.Context {
 	return ctx
 }
 
-func getGinContext(ctx context.Context) *gin.Context {
+func GetGinContext(ctx context.Context) *gin.Context {
 	key := getResKey(ctx)
 	res, ok := ginContextMap[key]
 	if !ok {
@@ -40,7 +40,7 @@ func getGinContext(ctx context.Context) *gin.Context {
 	return res
 }
 
-func deleteGinContext(ctx context.Context) {
+func DeleteGinContext(ctx context.Context) {
 	key := getResKey(ctx)
 	if _, ok := ginContextMap[key]; ok {
 		delete(ginContextMap, key)
