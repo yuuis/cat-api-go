@@ -19,11 +19,17 @@ func NewPresenter(logger *log.Logger) usecase.Presenter {
 	}
 }
 
-func (p *presenter) ViewError(ctx context.Context, err error) {
+func (p *presenter) ViewInternalServerError(ctx context.Context, err error) {
 	defer utilities.DeleteGinContext(ctx)
 	c := utilities.GetGinContext(ctx)
 	p.logger.Println(err)
 	p.JSON(c, http.StatusInternalServerError, map[string]interface{}{"errors": err.Error()})
+}
+
+func (p *presenter) ViewNoContent(ctx context.Context) {
+	defer utilities.DeleteGinContext(ctx)
+	c := utilities.GetGinContext(ctx)
+	c.Writer.WriteHeader(http.StatusNoContent)
 }
 
 func (p *presenter) JSON(c *gin.Context, code int, v interface{}) {

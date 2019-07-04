@@ -8,5 +8,6 @@ import (
 type Presenter interface {
 	ViewCat(ctx context.Context, item *usecaseCat.CatOutput)
 	ViewCats(ctx context.Context, items []*usecaseCat.CatOutput)
-	ViewError(ctx context.Context, err error)
+	ViewInternalServerError(ctx context.Context, err error)
+	ViewNoContent(ctx context.Context)
 }
