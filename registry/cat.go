@@ -1,15 +1,15 @@
 package registry
 
 import (
-	"github.com/yuuis/cat-api-go/adapter/datastore"
-	"github.com/yuuis/cat-api-go/domain/repository"
-	"github.com/yuuis/cat-api-go/usecase"
+	"github.com/yuuis/cat-api-go/adapter/datastore/cat"
+	"github.com/yuuis/cat-api-go/domain/cat"
+	"github.com/yuuis/cat-api-go/usecase/cat"
 )
 
-func (r *registry) NewCatUseCase() usecase.Cat {
-	return usecase.NewCat(r.NewCatRepository())
+func (r *registry) NewCatUseCase() usecaseCat.CatUsecase {
+	return usecaseCat.NewCatUsecase(r.NewCatRepository())
 }
 
-func (r *registry) NewCatRepository() repository.Cat {
-	return datastore.NewCat(r.db)
+func (r *registry) NewCatRepository() domainCat.CatRepository {
+	return datastoreCat.NewCatRepository(r.db)
 }
