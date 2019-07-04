@@ -1,9 +1,7 @@
-package repository
+package domainCat
 
-import "github.com/yuuis/cat-api-go/domain/entity"
-
-type Cat interface {
-	All() ([]*entity.Cat, error)
-	Find(id string) (*entity.Cat, error)
-	Store(*entity.Cat) (*entity.Cat, error)
+type CatRepository interface {
+	All() ([]*Cat, error)
+	Find(id string) (*Cat, error)
+	Store(*Cat) (*Cat, error)
 }

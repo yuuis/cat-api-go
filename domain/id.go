@@ -1,8 +1,10 @@
-package entity
+package domain
 
-import "github.com/google/uuid"
-
+import (
+	"github.com/google/uuid"
+	"strings"
+)
 
 func GenerateUUID() string {
-	return uuid.New().String()
+	return strings.Replace(uuid.New().String(), "-", "", -1)
 }

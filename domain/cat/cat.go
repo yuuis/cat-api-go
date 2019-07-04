@@ -1,4 +1,4 @@
-package entity
+package domainCat
 
 type Cat struct {
 	ID   string
