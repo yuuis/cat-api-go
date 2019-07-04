@@ -23,7 +23,7 @@ func (p *presenter) ViewError(ctx context.Context, err error) {
 	defer utilities.DeleteGinContext(ctx)
 	c := utilities.GetGinContext(ctx)
 	p.logger.Println(err)
-	p.JSON(c, http.StatusInternalServerError,  map[string]interface{}{"errors":err})
+	p.JSON(c, http.StatusInternalServerError, map[string]interface{}{"errors": err.Error()})
 }
 
 func (p *presenter) JSON(c *gin.Context, code int, v interface{}) {

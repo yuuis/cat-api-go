@@ -9,6 +9,7 @@ type CatUsecase interface {
 	GetAllCats() ([]*CatOutput, error)
 	GetCat(ipt *GetCatParam) (*CatOutput, error)
 	CreateCat(ipt *CreateCatParam) (*CatOutput, error)
+	UpdateCat(ipt *UpdateCatParam) (*CatOutput, error)
 }
 
 type repositories struct {
@@ -16,13 +17,13 @@ type repositories struct {
 }
 
 func NewCatUsecase(catRepository domainCat.CatRepository) CatUsecase {
-	return &repositories {
-		catRepository:  catRepository,
+	return &repositories{
+		catRepository: catRepository,
 	}
 }
 
 // TODO: outputだけここにあるのきもい
 type CatOutput struct {
-	ID   string  `json:"id"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
 }

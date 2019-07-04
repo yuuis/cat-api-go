@@ -12,7 +12,7 @@ func (r *repositories) CreateCat(ipt *CreateCatParam) (*CatOutput, error) {
 		return nil, err
 	}
 
-	cat, err := r.catRepository.Store(&domainCat.Cat {
+	cat, err := r.catRepository.Store(&domainCat.Cat{
 		ID:   domain.GenerateUUID(),
 		Name: ipt.Name,
 	})
@@ -21,7 +21,7 @@ func (r *repositories) CreateCat(ipt *CreateCatParam) (*CatOutput, error) {
 		return nil, err
 	}
 
-	oCat := &CatOutput {
+	oCat := &CatOutput{
 		ID:   cat.ID,
 		Name: cat.Name,
 	}

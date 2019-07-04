@@ -11,5 +11,5 @@ func OpenDB() (*gorm.DB, error) {
 	dbName := os.Getenv("MYSQL_DATABASE")
 	dbHost := os.Getenv("MYSQL_HOST")
 
-	return gorm.Open("mysql", "root:" + rootPassword + "@tcp("+dbHost+":3306)/" + dbName + "?charset=utf8mb4&parseTime=true")
+	return gorm.Open("mysql", "root:"+rootPassword+"@tcp("+dbHost+":3306)/"+dbName+"?charset=utf8mb4&parseTime=true")
 }

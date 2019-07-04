@@ -10,14 +10,14 @@ type Cat struct {
 }
 
 func FromEntity(e *domainCat.Cat) *Cat {
-	return &Cat {
+	return &Cat{
 		ID:   e.ID,
 		Name: e.Name,
 	}
 }
 
 func (c *Cat) ToEntity() *domainCat.Cat {
-	return &domainCat.Cat {
+	return &domainCat.Cat{
 		ID:   c.ID,
 		Name: c.Name,
 	}

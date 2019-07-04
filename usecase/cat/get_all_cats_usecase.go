@@ -10,8 +10,8 @@ func (r *repositories) GetAllCats() ([]*CatOutput, error) {
 	var oCats []*CatOutput
 
 	for _, cat := range cats {
-		oCats = append(oCats, &CatOutput {
-			ID: cat.ID,
+		oCats = append(oCats, &CatOutput{
+			ID:   cat.ID,
 			Name: cat.Name,
 		})
 	}

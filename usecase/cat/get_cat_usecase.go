@@ -7,7 +7,7 @@ func (r *repositories) GetCat(ipt *GetCatParam) (*CatOutput, error) {
 		return nil, err
 	}
 
-	oCat := &CatOutput {
+	oCat := &CatOutput{
 		ID:   cat.ID,
 		Name: cat.Name,
 	}
