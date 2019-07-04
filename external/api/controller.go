@@ -3,12 +3,13 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/yuuis/cat-api-go/usecase"
-	"github.com/yuuis/cat-api-go/usecase/input"
+	"github.com/yuuis/cat-api-go/usecase/cat"
 )
 
 type Controller interface {
+	GetAllCats(c *gin.Context)
 	GetCat(c *gin.Context)
-	PostCat(c *gin.Context)
+	CreateCat(c *gin.Context)
 }
 
 type controller struct {
@@ -16,13 +17,20 @@ type controller struct {
 }
 
 func NewController(it usecase.Interactor) Controller {
-	return &controller{
+	return &controller {
 		it: it,
 	}
 }
 
+func (ctr *controller) GetAllCats(c *gin.Context) {
+	ctx := c.Request.Context()
+	ctx = addGinContext(ctx, c)
+
+	ctr.it.GetAllCats(ctx)
+}
+
 func (ctr *controller) GetCat(c *gin.Context) {
-	var ipt input.GetCat
+	var ipt usecaseCat.GetCatParam
 	ipt.ID = c.Param("catID")
 
 	ctx := c.Request.Context()
@@ -31,12 +39,12 @@ func (ctr *controller) GetCat(c *gin.Context) {
 	ctr.it.GetCat(ctx, &ipt)
 }
 
-func (ctr *controller) PostCat(c *gin.Context) {
-	var ipt input.PostCat
+func (ctr *controller) CreateCat(c *gin.Context) {
+	var ipt usecaseCat.CreateCatParam
 	_ = c.BindJSON(&ipt)
 
 	ctx := c.Request.Context()
 	ctx = addGinContext(ctx, c)
 
-	ctr.it.PostCat(ctx, &ipt)
+	ctr.it.CreateCat(ctx, &ipt)
 }
