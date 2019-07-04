@@ -1,10 +1,9 @@
 package main
 
 import (
+	"github.com/yuuis/cat-api-go/adapter/datastore/cat"
 	"log"
 	"os"
-
-	"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -22,5 +21,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	db.CreateTable(&mysql.Cat{})
+	db.CreateTable(&datastoreCat.Cat{})
 }

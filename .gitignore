@@ -1,4 +1,4 @@
 .DS_Store
 .idea
 go.sum
-db/mysql_data/*
+mysql/mysql_data/*

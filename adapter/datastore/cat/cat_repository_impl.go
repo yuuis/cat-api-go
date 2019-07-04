@@ -3,28 +3,27 @@ package datastore
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
-	"github.com/yuuis/cat-api-go/domain/entity"
-	"github.com/yuuis/cat-api-go/domain/repository"
+	cat2 "github.com/yuuis/cat-api-go/domain/cat"
 )
 
 type cat struct {
 	db *gorm.DB
 }
 
-func NewCat(db *gorm.DB) repository.Cat {
+func NewCat(db *gorm.DB) cat2.Cat {
 	return &cat{
 		db: db,
 	}
 }
 
-func (c *cat) All() ([]*entity.Cat, error) {
+func (c *cat) All() ([]*cat2.Cat, error) {
 	var mCats []mysql.Cat
 
 	if err := c.db.Find(&mCats).Error; err != nil {
 		return nil, err
 	}
 
-	var eCats []*entity.Cat
+	var eCats []*cat2.Cat
 	for _, mCat := range mCats {
 		eCats = append(eCats, mCat.ToEntity())
 	}
@@ -32,7 +31,7 @@ func (c *cat) All() ([]*entity.Cat, error) {
 	return eCats, nil
 }
 
-func (c *cat) Find(id string) (*entity.Cat, error) {
+func (c *cat) Find(id string) (*cat2.Cat, error) {
 	var mCat mysql.Cat
 
 	if err := c.db.First(&mCat, id).Error; err != nil {
@@ -42,7 +41,7 @@ func (c *cat) Find(id string) (*entity.Cat, error) {
 	return mCat.ToEntity(), nil
 }
 
-func (c *cat) Store(cat *entity.Cat) (*entity.Cat, error) {
+func (c *cat) Store(cat *cat2.Cat) (*cat2.Cat, error) {
 	mCat := mysql.Cat{
 		ID:   cat.ID,
 		Name: cat.Name,
