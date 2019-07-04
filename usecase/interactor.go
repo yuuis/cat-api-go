@@ -49,3 +49,14 @@ func (i *Interactor) CreateCat(ctx context.Context, ipt *usecaseCat.CreateCatPar
 
 	i.presenter.ViewCat(ctx, cat)
 }
+
+func (i *Interactor) UpdateCat(ctx context.Context, ipt *usecaseCat.UpdateCatParam) {
+	cat, err := i.cat.UpdateCat(ipt)
+
+	if err != nil {
+		i.presenter.ViewError(ctx, err)
+		return
+	}
+
+	i.presenter.ViewCat(ctx, cat)
+}
