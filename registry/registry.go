@@ -2,13 +2,14 @@ package registry
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/yuuis/cat-api-go/external/api"
+	"github.com/yuuis/cat-api-go/external/api/controllers"
+	"github.com/yuuis/cat-api-go/external/api/presenters"
 	"github.com/yuuis/cat-api-go/usecase"
 	"log"
 )
 
 type Registry interface {
-	NewController() api.Controller
+	NewController() controllers.Controller
 }
 
 type registry struct {
@@ -23,6 +24,6 @@ func NewRegistry(db *gorm.DB, logger *log.Logger) Registry {
 	}
 }
 
-func (r *registry) NewController() api.Controller {
-	return api.NewController(usecase.NewInteractor(api.NewPresenter(r.logger), r.NewCatUseCase()))
+func (r *registry) NewController() controllers.Controller {
+	return controllers.NewController(usecase.NewInteractor(presenters.NewPresenter(r.logger), r.NewCatUseCase()))
 }
