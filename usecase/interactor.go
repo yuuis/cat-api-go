@@ -21,7 +21,7 @@ func (i *Interactor) GetAllCats(ctx context.Context) {
 	cats, err := i.cat.GetAllCats()
 
 	if err != nil {
-		i.presenter.ViewError(ctx, err)
+		i.presenter.ViewInternalServerError(ctx, err)
 		return
 	}
 
@@ -32,7 +32,7 @@ func (i *Interactor) GetCat(ctx context.Context, ipt *usecaseCat.GetCatParam) {
 	cat, err := i.cat.GetCat(ipt)
 
 	if err != nil {
-		i.presenter.ViewError(ctx, err)
+		i.presenter.ViewInternalServerError(ctx, err)
 		return
 	}
 
@@ -43,7 +43,7 @@ func (i *Interactor) CreateCat(ctx context.Context, ipt *usecaseCat.CreateCatPar
 	cat, err := i.cat.CreateCat(ipt)
 
 	if err != nil {
-		i.presenter.ViewError(ctx, err)
+		i.presenter.ViewInternalServerError(ctx, err)
 		return
 	}
 
@@ -54,9 +54,20 @@ func (i *Interactor) UpdateCat(ctx context.Context, ipt *usecaseCat.UpdateCatPar
 	cat, err := i.cat.UpdateCat(ipt)
 
 	if err != nil {
-		i.presenter.ViewError(ctx, err)
+		i.presenter.ViewInternalServerError(ctx, err)
 		return
 	}
 
 	i.presenter.ViewCat(ctx, cat)
+}
+
+func (i *Interactor) DeleteCat(ctx context.Context, ipt *usecaseCat.DeleteCatParam) {
+	err := i.cat.DeleteCat(ipt)
+
+	if err != nil {
+		i.presenter.ViewInternalServerError(ctx, err)
+		return
+	}
+
+	i.presenter.ViewNoContent(ctx)
 }

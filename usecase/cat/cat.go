@@ -10,6 +10,7 @@ type CatUsecase interface {
 	GetCat(ipt *GetCatParam) (*CatOutput, error)
 	CreateCat(ipt *CreateCatParam) (*CatOutput, error)
 	UpdateCat(ipt *UpdateCatParam) (*CatOutput, error)
+	DeleteCat(ipt *DeleteCatParam) error
 }
 
 type repositories struct {

@@ -10,6 +10,7 @@ type Controller interface {
 	GetCat(c *gin.Context)
 	CreateCat(c *gin.Context)
 	UpdateCat(c *gin.Context)
+	DeleteCat(c *gin.Context)
 }
 
 type controller struct {

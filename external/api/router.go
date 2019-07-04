@@ -10,4 +10,5 @@ func Router(r *gin.Engine, c controllers.Controller) {
 	r.GET("/cats/:catID", c.GetCat)
 	r.POST("/cats", c.CreateCat)
 	r.PUT("/cats", c.UpdateCat)
+	r.DELETE("/cats/:catID", c.DeleteCat)
 }

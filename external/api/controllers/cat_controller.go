@@ -42,3 +42,13 @@ func (ctr *controller) UpdateCat(c *gin.Context) {
 
 	ctr.it.UpdateCat(ctx, &ipt)
 }
+
+func (ctr *controller) DeleteCat(c *gin.Context) {
+	var ipt usecaseCat.DeleteCatParam
+	ipt.ID = c.Param("catID")
+
+	ctx := c.Request.Context()
+	ctx = utilities.AddGinContext(ctx, c)
+
+	ctr.it.DeleteCat(ctx, &ipt)
+}
