@@ -1,29 +1,28 @@
-package datastore
+package datastoreCat
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/yuuis/cat-api-go/adapter/datastore/mysql"
-	cat2 "github.com/yuuis/cat-api-go/domain/cat"
+	"github.com/yuuis/cat-api-go/domain/cat"
 )
 
-type cat struct {
+type datastore struct {
 	db *gorm.DB
 }
 
-func NewCat(db *gorm.DB) cat2.Cat {
-	return &cat{
+func NewCatRepository(db *gorm.DB) domainCat.CatRepository {
+	return &datastore {
 		db: db,
 	}
 }
 
-func (c *cat) All() ([]*cat2.Cat, error) {
-	var mCats []mysql.Cat
+func (d *datastore) All() ([]*domainCat.Cat, error) {
+	var mCats []Cat
 
-	if err := c.db.Find(&mCats).Error; err != nil {
+	if err := d.db.Find(&mCats).Error; err != nil {
 		return nil, err
 	}
 
-	var eCats []*cat2.Cat
+	var eCats []*domainCat.Cat
 	for _, mCat := range mCats {
 		eCats = append(eCats, mCat.ToEntity())
 	}
@@ -31,23 +30,23 @@ func (c *cat) All() ([]*cat2.Cat, error) {
 	return eCats, nil
 }
 
-func (c *cat) Find(id string) (*cat2.Cat, error) {
-	var mCat mysql.Cat
+func (d *datastore) Find(id string) (*domainCat.Cat, error) {
+	var mCat Cat
 
-	if err := c.db.First(&mCat, id).Error; err != nil {
+	if err := d.db.Where("id = ?", id).Find(&mCat).Error; err != nil {
 		return nil, err
 	}
 
 	return mCat.ToEntity(), nil
 }
 
-func (c *cat) Store(cat *cat2.Cat) (*cat2.Cat, error) {
-	mCat := mysql.Cat{
+func (d *datastore) Store(cat *domainCat.Cat) (*domainCat.Cat, error) {
+	mCat := Cat{
 		ID:   cat.ID,
 		Name: cat.Name,
 	}
 
-	if err := c.db.Create(&mCat).Error; err != nil {
+	if err := d.db.Create(&mCat).Error; err != nil {
 		return nil, err
 	}
 
