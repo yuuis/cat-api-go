@@ -9,6 +9,7 @@ type Controller interface {
 	GetAllCats(c *gin.Context)
 	GetCat(c *gin.Context)
 	CreateCat(c *gin.Context)
+	UpdateCat(c *gin.Context)
 }
 
 type controller struct {
@@ -16,7 +17,7 @@ type controller struct {
 }
 
 func NewController(it usecase.Interactor) Controller {
-	return &controller {
+	return &controller{
 		it: it,
 	}
 }

@@ -32,3 +32,13 @@ func (ctr *controller) CreateCat(c *gin.Context) {
 
 	ctr.it.CreateCat(ctx, &ipt)
 }
+
+func (ctr *controller) UpdateCat(c *gin.Context) {
+	var ipt usecaseCat.UpdateCatParam
+	_ = c.BindJSON(&ipt)
+
+	ctx := c.Request.Context()
+	ctx = utilities.AddGinContext(ctx, c)
+
+	ctr.it.UpdateCat(ctx, &ipt)
+}
