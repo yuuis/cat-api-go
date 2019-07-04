@@ -1,5 +1,5 @@
 # cat-api-go
-  implementation CRUD server on golang with clean architecture :cat:
+  implementation CRUD json api server on golang with clean architecture :cat:
 
 ## how to build
 ```sh
