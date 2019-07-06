@@ -5,10 +5,12 @@ import (
 	"github.com/yuuis/cat-api-go/external/api/controllers"
 )
 
-func Router(r *gin.Engine, c controllers.Controller) {
-	r.GET("/cats", c.GetAllCats)
-	r.GET("/cats/:catID", c.GetCat)
-	r.POST("/cats", c.CreateCat)
-	r.PUT("/cats", c.UpdateCat)
-	r.DELETE("/cats/:catID", c.DeleteCat)
+func Router(e *gin.Engine, c controllers.Controller) {
+	v1 := e.Group("/api")
+
+	v1.GET("/cats", c.GetAllCats)
+	v1.GET("/cats/:catID", c.GetCat)
+	v1.POST("/cats", c.CreateCat)
+	v1.PUT("/cats", c.UpdateCat)
+	v1.DELETE("/cats/:catID", c.DeleteCat)
 }
